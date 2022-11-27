@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/Major1_ML.iml" filepath="$PROJECT_DIR$/.idea/Major1_ML.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../majorHW1/.idea/majorHW1.iml" filepath="$PROJECT_DIR$/../majorHW1/.idea/majorHW1.iml" />
       <module fileurl="file://$PROJECT_DIR$/../majorHW1/.idea/workspace.iml" filepath="$PROJECT_DIR$/../majorHW1/.idea/workspace.iml" />
     </modules>
   </component>
