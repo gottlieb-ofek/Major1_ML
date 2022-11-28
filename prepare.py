@@ -8,9 +8,8 @@ from sklearn.preprocessing import StandardScaler
 "this function makes features to numerics and extracts features from other features"
 class MakeNumericExtractAndDrop:
 
-    def __int__(self, df, training_df):
+    def __int__(self, df):
         self.df = df
-        self.training_df = training_df
 
     "here are the features we convert to numeric / boolean"
     def sex(self):
@@ -44,14 +43,14 @@ class MakeNumericExtractAndDrop:
     def stdNormal(self, feature):
         df = self.df[[feature]]
         scaler = StandardScaler()
-        scaler.fit(self.training_df[[feature]])
+        scaler.fit(df)
         normalaized = scaler.transform(df)
         self.df[feature] = normalaized
 
     def minMaxNormal(self, feature):
         df = self.df[[feature]]
-        scaler = MinMaxScaler((-1, 1))
-        scaler.fit(self.training_df[[feature]])
+        scaler = MinMaxScaler((-1,1))
+        scaler.fit(df)
         normalaized = scaler.transform(df)
         self.df[feature] = normalaized
 
@@ -78,6 +77,6 @@ class MakeNumericExtractAndDrop:
 
 #TODO - main function
 def prepare_data(training_data, new_data):
-    
+
 
     return
