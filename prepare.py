@@ -12,7 +12,8 @@ class MakeNumericExtractAndDrop:
 
     "here are the features we convert to numeric / boolean"
     def sex(self):
-        #TODO - make bool
+        self.df['sex'] = self.df['sex'].replace(['M'], 0)
+        self.df['sex'] = self.df['sex'].replace(['F'], 1)
 
     def blood_type(self):
         self.df['A'] = self.df["blood_type"].isin(["A+", "A-"]).apply(lambda x: int(x))
