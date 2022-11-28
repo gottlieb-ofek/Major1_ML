@@ -19,7 +19,7 @@ class MakeNumericExtractAndDrop:
         self.df['A'] = self.df["blood_type"].isin(["A+", "A-"]).apply(lambda x: int(x))
         self.df['B'] = self.df["blood_type"].isin(["B+", "B-", "AB+", "AB-"]).apply(lambda x: int(x))
         self.df['O'] = self.df["blood_type"].isin(["O+", "O-"]).apply(lambda x: int(x))
-        dataset = self.df.drop('blood_type', 1)
+        self.df.drop('blood_type', 1)
 
     def current_location(self):
         self.df["current_location_x"] = self.df["current_location"].apply(lambda x: (x.split(","))[0][2:-1])
