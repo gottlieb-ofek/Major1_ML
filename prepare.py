@@ -8,9 +8,9 @@ from sklearn.preprocessing import StandardScaler
 "this function makes features to numerics and extracts features from other features"
 class MakeNumericExtractAndDrop:
 
-    def __int__(self, df):
+    def __int__(self, df, training_df):
         self.df = df
-
+        self.training_df = training_df
     "here are the features we convert to numeric / boolean"
     def sex(self):
         self.df['sex'] = self.df['sex'].replace(['M'], 0)
@@ -43,14 +43,14 @@ class MakeNumericExtractAndDrop:
     def stdNormal(self, feature):
         df = self.df[[feature]]
         scaler = StandardScaler()
-        scaler.fit(df)
+        scaler.fit(self.training_df[[feature]])
         normalaized = scaler.transform(df)
         self.df[feature] = normalaized
 
     def minMaxNormal(self, feature):
         df = self.df[[feature]]
         scaler = MinMaxScaler((-1,1))
-        scaler.fit(df)
+        scaler.fit(self.training_df[[feature]])
         normalaized = scaler.transform(df)
         self.df[feature] = normalaized
 
@@ -73,10 +73,17 @@ class MakeNumericExtractAndDrop:
         self.minMaxNormal("current_location_y")
         self.minMaxNormal("time_stamp_pcr")
 
+    def numeric_change(self):
+        self.blood_type()
+        self.sex()
+        self.pcr_date()
+        self.symptoms()
+        self.current_location()
 
 
 #TODO - main function
 def prepare_data(training_data, new_data):
-
-
-    return
+    new_data_pro = MakeNumericExtractAndDrop(new_data.copy(), training_data.copy())
+    new_data_pro.numeric_change()
+    new_data_pro.normalization()
+    return new_data_pro
